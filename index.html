@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GRAB Launch Countdown</title>
+    <title>GRAB Official Launch Countdown</title>
     <style>
         body {
             background-image: linear-gradient(#5f8bc2, #cfe0ea, #5f8bc2);
@@ -20,20 +20,21 @@
             user-select: none; /* Prevent text selection globally */
         }
         #countdown {
-            font-size: 2em;
-            background: rgba(255, 255, 255, 0.3); /* More transparent background */
+            font-size: 3em; /* Increased font size */
+            background: rgba(255, 255, 255, 0.3); /* More visible background */
             color: #327DAF;
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
             font-weight: bold;
-            letter-spacing: 1px;
-            transition: background 0.3s, box-shadow 0.3s;
+            letter-spacing: 2px; /* Increased letter spacing */
+            transition: background 0.3s, box-shadow 0.3s, transform 0.3s; /* Added transform transition */
             display: flex;
             flex-direction: column;
             align-items: center;
             cursor: pointer; /* Indicates clickable */
             margin-bottom: 20px; /* Space between countdown and announcement */
+            animation: pulse 2s infinite; /* Added pulse animation */
         }
         #approximate {
             font-size: 0.8em;
@@ -86,11 +87,24 @@
         a:hover {
             text-decoration: underline;
         }
+
+        /* Pulse animation for countdown */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
     </style>
 </head>
 <body>
     <div id="countdown">
-        <div>0 Days 0 Hours 0 Minutes 0 Seconds</div>
+        <div>10 Days 0 Hours 0 Minutes 0 Seconds</div>
         <div id="approximate">(Approximate)</div>
     </div>
     <div id="announcement">

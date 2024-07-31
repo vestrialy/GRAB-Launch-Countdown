@@ -12,29 +12,34 @@
             margin: 0;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             position: relative;
             transition: background-image 0.3s;
-            user-select: none; /* Prevent text selection globally */
+            text-align: center; /* Center text for better readability on mobile */
+            padding: 20px; /* Add padding for mobile view */
+            box-sizing: border-box; /* Include padding in the element's total width and height */
         }
         #countdown {
-            font-size: 3em; /* Increased font size */
-            background: rgba(255, 255, 255, 0.3); /* More visible background */
+            font-size: 2em;
+            background: rgba(255, 255, 255, 0.8);
             color: #327DAF;
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
             font-weight: bold;
-            letter-spacing: 2px; /* Increased letter spacing */
-            transition: background 0.3s, box-shadow 0.3s, transform 0.3s; /* Added transform transition */
+            letter-spacing: 1px;
+            transition: background 0.3s, box-shadow 0.3s;
             display: flex;
             flex-direction: column;
             align-items: center;
-            cursor: pointer; /* Indicates clickable */
-            margin-bottom: 20px; /* Space between countdown and announcement */
-            animation: pulse 2s infinite; /* Added pulse animation */
+            width: 100%; /* Ensure it takes full width on smaller screens */
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
+            margin-bottom: 20px; /* Add margin between countdown and announcement */
+        }
+        #countdown:hover {
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
         }
         #approximate {
             font-size: 0.8em;
@@ -42,14 +47,15 @@
             margin-top: 10px;
         }
         #announcement {
-            margin-bottom: 20px;
-            background: rgba(255, 255, 255, 0.3); /* More transparent background */
+            background: rgba(255, 255, 255, 0.8);
             color: #327DAF;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
             max-width: 600px;
             text-align: center;
+            width: 100%; /* Ensure it takes full width on smaller screens */
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
         }
         #announcement h1 {
             margin: 0 0 10px 0;
@@ -63,6 +69,7 @@
             list-style-type: none;
             padding: 0;
             text-align: left;
+            margin: 0; /* Remove default margin */
         }
         #announcement ul li {
             margin: 10px 0;
@@ -87,17 +94,19 @@
         a:hover {
             text-decoration: underline;
         }
-
-        /* Pulse animation for countdown */
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
+        /* Media Queries for Mobile */
+        @media (max-width: 600px) {
+            body {
+                font-size: 1em; /* Adjust font size for better readability on mobile */
             }
-            50% {
-                transform: scale(1.05);
+            #announcement h1 {
+                font-size: 1.5em; /* Adjust heading size for smaller screens */
             }
-            100% {
-                transform: scale(1);
+            #announcement p, #announcement ul li {
+                font-size: 1em; /* Adjust paragraph and list item size for smaller screens */
+            }
+            #countdown {
+                font-size: 1.5em; /* Adjust countdown font size for smaller screens */
             }
         }
     </style>
@@ -113,7 +122,7 @@
         <p>Get ready for:</p>
         <ul>
             <li>Many new highly requested features</li>
-            <li><a href="https://vestrialy.github.io/GRAB-Cosmetics/Items/Release-Day-Badge/" target="_blank">A free limited edition badge for playing in the first 24 hours</a></li>
+            <li>A free limited edition badge for playing in the first 24 hours</li>
             <li>An updated cosmetics system with a lot more customization options and many new items</li>
             <li>An exclusive <a href="https://vestrialy.github.io/GRAB-Cosmetics/Packs/Early-Adopter-Pack/" target="_blank">"Early Adopter Pack"</a> available for the first 2 weeks</li>
         </ul>
@@ -130,17 +139,14 @@
         <p>Thanks for playing GRAB and being a part of the community. See you on August 8th!</p>
     </div>
 
-    <!-- Include canvas-confetti library -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
     <script>
         function updateCountdown() {
-            const targetTimestamp = 1723136400000; // Updated timestamp
+            const targetTimestamp = 1723136400 * 1000; // Convert to milliseconds
             const now = Date.now();
             const timeLeft = targetTimestamp - now;
 
             if (timeLeft <= 0) {
-                document.getElementById('countdown').innerHTML = "0 Days 0 Hours 0 Minutes 0 Seconds";
+                document.getElementById('countdown').children[0].innerHTML = "0 Days 0 Hours 0 Minutes 0 Seconds";
                 clearInterval(timer);
                 return;
             }
@@ -154,20 +160,8 @@
                 `${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`;
         }
 
-        function triggerConfetti() {
-            // Trigger confetti effect
-            confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 }
-            });
-        }
-
         const timer = setInterval(updateCountdown, 1000);
         updateCountdown();  // Initial call to display the countdown immediately
-
-        // Add click event listener to countdown
-        document.getElementById('countdown').addEventListener('click', triggerConfetti);
     </script>
 </body>
 </html>

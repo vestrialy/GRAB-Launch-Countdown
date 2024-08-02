@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GRAB Official Launch Countdown</title>
+    <title>GRAB Launch Countdown</title>
     <style>
         body {
             background-image: linear-gradient(#5f8bc2, #cfe0ea, #5f8bc2);
@@ -151,7 +151,7 @@
 </head>
 <body>
     <div id="countdown">
-        <div>10 Days 0 Hours 0 Minutes 0 Seconds</div>
+        <div id="time">10 Days 0 Hours 0 Minutes 0 Seconds</div>
         <div id="approximate">(Approximate)</div>
     </div>
     <div id="logo-container">
@@ -188,5 +188,32 @@
             Your browser does not support the video tag.
         </video>
     </div>
+
+    <script>
+        function updateCountdown() {
+            // Target timestamp in milliseconds (adjust to your exact date and time)
+            const targetTimestamp = 1723136400000;
+            const now = Date.now();
+            const timeLeft = targetTimestamp - now;
+
+            if (timeLeft <= 0) {
+                document.getElementById('time').innerHTML = "0 Days 0 Hours 0 Minutes 0 Seconds";
+                clearInterval(timer);
+                return;
+            }
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById('time').innerHTML = 
+                `${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`;
+        }
+
+        // Update the countdown every second
+        const timer = setInterval(updateCountdown, 1000);
+        updateCountdown();  // Initial call to display the countdown immediately
+    </script>
 </body>
 </html>

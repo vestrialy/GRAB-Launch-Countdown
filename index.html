@@ -22,7 +22,7 @@
         }
         #countdown {
             font-size: 2em;
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.8);
             color: #327DAF;
             border-radius: 10px;
             padding: 20px;
@@ -42,19 +42,19 @@
         #logo-container {
             display: flex;
             justify-content: center;
-            gap: 20px; /* Space between the logos */
+            gap: 20px; /* Increased gap to make space for larger logos */
             margin: 20px 0;
             width: 100%; /* Ensure it takes full width on smaller screens */
             box-sizing: border-box; /* Include padding and border in element's total width and height */
         }
         #logo-container img {
-            max-width: 100%; /* Ensure logos do not exceed container width */
-            height: auto; /* Maintain aspect ratio */
-            max-height: 200px; /* Set a max-height to avoid excessive size */
+            max-width: 50%; /* Increased size for larger logos */
+            height: auto;
+            max-height: 200px; /* Increased max-height for larger logos */
             object-fit: contain; /* Ensure logos fit within container without distortion */
         }
         #announcement {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.8);
             color: #327DAF;
             padding: 20px;
             border-radius: 10px;
@@ -141,6 +141,10 @@
             }
             #countdown {
                 font-size: 1.5em; /* Adjust countdown font size for smaller screens */
+            }
+            #logo-container img {
+                max-width: 60%; /* Adjust logo size for smaller screens */
+                max-height: 150px; /* Adjust max-height for smaller screens */
             }
             #view-trailer {
                 font-size: 1em;
